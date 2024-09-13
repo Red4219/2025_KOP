@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -18,6 +19,7 @@ public class Robot extends TimedRobot {
   private DifferentialDrive m_robotDrive;
   private Joystick m_leftStick;
   private Joystick m_rightStick;
+  XboxController controller;
 
   private final WPI_VictorSPX m_leftMotor1 = new WPI_VictorSPX(1);
   private final WPI_VictorSPX m_leftMotor2 = new WPI_VictorSPX(2);
@@ -42,12 +44,16 @@ public class Robot extends TimedRobot {
     m_leftMotor2.follow(m_leftMotor1);
 
     m_robotDrive = new DifferentialDrive(m_leftMotor1, m_rightMotor3);
-    m_leftStick = new Joystick(0);
-    m_rightStick = new Joystick(1);
+
+    controller = new XboxController(0);
+
+    //m_leftStick = new Joystick(0);
+    //m_rightStick = new Joystick(1);
   }
 
   @Override
   public void teleopPeriodic() {
-    m_robotDrive.tankDrive(-m_leftStick.getY(), -m_rightStick.getY());
+    //m_robotDrive.tankDrive(-m_leftStick.getY(), -m_rightStick.getY());
+    m_robotDrive.tankDrive(-controller.getLeftY(), -controller.getRightY());
   }
 }
