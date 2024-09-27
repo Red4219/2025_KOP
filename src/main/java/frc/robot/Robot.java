@@ -66,7 +66,7 @@ public class Robot extends LoggedRobot {
   public void teleopPeriodic() {
     m_robotDrive.tankDrive(-controller.getLeftY(), -controller.getRightY());
 
-    motor1.setVoltage(controller.getRightTriggerAxis());
+    motor1.setVoltage(controller.getRightTriggerAxis() * 9);
     
 
     /*if(controller.getRightBumperPressed()) {
